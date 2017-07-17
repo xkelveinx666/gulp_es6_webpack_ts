@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include('../../public/pages/meta.art') %>
+</head>
+
+<body>
+    <span><% if(student) { %> test <% } %></span>
+    <p>Hello Webpack World!</p>
+</body>
+
+</html>
