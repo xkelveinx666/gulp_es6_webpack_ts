@@ -2,20 +2,20 @@ const path = require('path');
 const common = require('./common_config');
 const HOME_TABLE_CONFIG = {
     "filepath": path.resolve(common.privatePath.pages, "test.art"),
-    "title": "webpack title",
+    "title": "测试页面1",
     "icon": "webpack icon",
     "description": "本页面用于华南理工大学广州学院计算机工程学院的短信成绩发送系统",
     "keywords": "GCU send, send, GCU",
-    "filename": "main.html",
+    "filename": "main1.html",
 }
 
 const HOME_SEND_CONFIG = {
     "filepath": path.resolve(common.privatePath.pages, "test.art"),
-    "title": "webpack title",
+    "title": "测试页面2",
     "icon": "webpack icon",
     "description": "本页面用于华南理工大学广州学院计算机工程学院的短信成绩发送系统",
     "keywords": "GCU send, send, GCU",
-    "filename": "main.html",
+    "filename": "main2.html",
 }
 
 module.exports = {

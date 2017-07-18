@@ -7,13 +7,10 @@ const path = require("path");
 
 const common = require('./webpack/config/common_config');
 const pagesConfig = require('./webpack/config/page_config');
+const entriesConfig = require('./webpack/config/entries_config');
 
 module.exports = {
     context: __dirname,
-    entry: {
-        ie8fix: path.resolve(common.publicPath.scripts, "ie8fix.js"),
-        home_table: path.resolve(common.privatePath.config, "entry_home_table.js"),
-    },
     output: {
         filename: "[name].bundle.js",
         path: common.location.dist,
@@ -42,17 +39,6 @@ module.exports = {
             }
         }],
     },
-    // plugins: [
-    //     new htmlWebpackPlugin({
-    //         title: 'Webpack Study',
-    //         filename: pageName.main + fileType.html,
-    //         template: path.resolve(privatePath.pages, "homt_table.html"),
-    //     }),
-    //     new extractTextPlugin({
-    //         filename: "css/[name].[contenthash].css"
-    //     }),
-    //     new cleanWebpackPlugin(['/dist']),
-    // ],
     plugins: [
         new cleanWebpackPlugin(common.location.dist),
         new extractTextPlugin({
@@ -68,7 +54,7 @@ module.exports = {
 };
 
 //动态读取page_config中的html配置实现多页面加载
-(function() {
+let injectHTML = () => {
     pagesConfig.pages.forEach(function(page) {
         let htmlConfig = new htmlWebpackPlugin({
             title: page.title,
@@ -83,4 +69,20 @@ module.exports = {
         });
         module.exports.plugins.push(htmlConfig);
     });
+};
+
+//动态读取entries_config中的entry配置实现多页面加载
+let injectEntiries = () => {
+    let entryObject = {};
+    entriesConfig.entries.forEach(function(entry) {
+        let chunkName = entry.chunkName,
+            chunkPath = entry.chunkPath;
+        entryObject[chunkName] = chunkPath;
+    });
+    module.exports.entry = entryObject;
+}
+
+(function() {
+    injectEntiries();
+    injectHTML();
 })();
