@@ -2,23 +2,6 @@ const path = require('path');
 const common = require('./common_config');
 const entries = require('./entries_config').entries;
 
-(function() {
-    // console.log(entries);
-    // let entriesKeys = Object.keys(entries);
-    // entriesKeys.forEach(function(key) {
-    //     console.log(key + " " + entries[key].chunkName);
-    // });
-    // let chunkName = entry.chunkName,
-    //     chunkPath = entry.chunkPath;
-    // console.log(chunkName + "" + chunkPath);
-
-    // Object.keys(entries).forEach(function(entry) {
-    //     let chunkName = entry.chunkName,
-    //         chunkPath = entry.chunkPath;
-    //     console.log(chunkName + "" + chunkPath);
-    // });
-})()
-
 const HOME_TABLE_CONFIG = {
     "filepath": path.resolve(common.privatePath.pages, "test.art"),
     "title": "测试页面1",

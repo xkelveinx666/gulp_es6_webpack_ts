@@ -3,13 +3,12 @@ const webpack = require("webpack");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 const extractTextPlugin = require("extract-text-webpack-plugin");
-const path = require("path");
 
 const common = require('./webpack/config/common_config');
 const pagesConfig = require('./webpack/config/page_config');
 const entriesConfig = require('./webpack/config/entries_config');
 
-module.exports = {
+const moduleContext = {
     context: __dirname,
     cache: true,
     output: {
@@ -41,7 +40,6 @@ module.exports = {
         }],
     },
     plugins: [
-        new cleanWebpackPlugin(common.location.dist),
         new extractTextPlugin({
             filename: "css/[name].[contenthash].css"
         }),
@@ -52,6 +50,10 @@ module.exports = {
         contentBase: common.location.dist,
         publicPath: 'http://localhost',
     },
+}
+
+module.exports = {
+    "config": moduleContext,
 };
 
 //动态读取page_config中的html配置实现多页面加载
@@ -68,7 +70,7 @@ let injectHTML = () => {
             ie8fix: common.templateDefault.ie8fix,
             chunks: page.chunks,
         });
-        module.exports.plugins.push(htmlConfig);
+        moduleContext.plugins.push(htmlConfig);
     });
 };
 
@@ -82,7 +84,7 @@ let injectEntiries = () => {
         let chunkPath = entries[key].chunkPath;
         entryObject[chunkName] = chunkPath;
     });
-    module.exports.entry = entryObject;
+    moduleContext.entry = entryObject;
 }
 
 (function() {

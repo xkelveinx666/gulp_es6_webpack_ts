@@ -10,9 +10,9 @@ class chunk {
 }
 
 //自动扫描，同步读取config文件中的entry文件
+let entries = {};
 let loadEntries = () => {
     const entriesFilesPaths = [common.privatePath.config, common.publicPath.config];
-    let entries = {};
     entriesFilesPaths.forEach(function(entriesFilePath) {
         var files = glob.sync(path.resolve(entriesFilePath, "entry.*.js"), { nodir: true })
 
@@ -21,12 +21,14 @@ let loadEntries = () => {
         let chunkName = fileName.substring(fileName.indexOf(".") + 1, fileName.lastIndexOf("."));
         let newChunk = new chunk(chunkName, pathName);
         entries[chunkName] = newChunk;
-        module.exports = {
-            "entries": entries
-        }
+
     });
 }
 
 (function() {
     loadEntries();
 })()
+
+module.exports = {
+    "entries": entries
+}
