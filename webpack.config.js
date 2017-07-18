@@ -9,11 +9,19 @@ const common = require('./webpack/config/common_config');
 
 const HOME_TABLE_CONFIG = {
     "filepath": path.resolve(common.privatePath.pages, "test.art"),
+    "title": "webpack title",
+    "icon": "webpack icon",
+    "description": "本页面用于华南理工大学广州学院计算机工程学院的短信成绩发送系统",
+    "keywords": "GCU send, send, GCU",
     "filename": "main.html",
 }
 
 const HOME_SEND_CONFIG = {
     "filepath": path.resolve(common.privatePath.pages, "test.art"),
+    "title": "webpack title",
+    "icon": "webpack icon",
+    "description": "本页面用于华南理工大学广州学院计算机工程学院的短信成绩发送系统",
+    "keywords": "GCU send, send, GCU",
     "filename": "main.html",
 }
 
@@ -69,11 +77,11 @@ module.exports = {
             filename: "css/[name].[contenthash].css"
         }),
         new htmlWebpackPlugin({
-            title: common.templateDefault.title,
+            title: HOME_TABLE_CONFIG.title,
             icon: common.templateDefault.icon,
             copyright: common.templateDefault.copyright,
-            descriptions: common.templateDefault.description,
-            keywords: common.templateDefault.keywords,
+            descriptions: HOME_TABLE_CONFIG.description,
+            keywords: HOME_TABLE_CONFIG.keywords,
             filename: HOME_TABLE_CONFIG.filename,
             template: HOME_TABLE_CONFIG.filepath,
             ie8fix: common.templateDefault.ie8fix,
