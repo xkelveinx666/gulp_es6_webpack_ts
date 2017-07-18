@@ -6,25 +6,7 @@ const extractTextPlugin = require("extract-text-webpack-plugin");
 const path = require("path");
 
 const common = require('./webpack/config/common_config');
-
-const HOME_TABLE_CONFIG = {
-    "filepath": path.resolve(common.privatePath.pages, "test.art"),
-    "title": "webpack title",
-    "icon": "webpack icon",
-    "description": "本页面用于华南理工大学广州学院计算机工程学院的短信成绩发送系统",
-    "keywords": "GCU send, send, GCU",
-    "filename": "main.html",
-}
-
-const HOME_SEND_CONFIG = {
-    "filepath": path.resolve(common.privatePath.pages, "test.art"),
-    "title": "webpack title",
-    "icon": "webpack icon",
-    "description": "本页面用于华南理工大学广州学院计算机工程学院的短信成绩发送系统",
-    "keywords": "GCU send, send, GCU",
-    "filename": "main.html",
-}
-
+const pagesConfig = require('./webpack/config/page_config');
 
 module.exports = {
     context: __dirname,
@@ -76,20 +58,6 @@ module.exports = {
         new extractTextPlugin({
             filename: "css/[name].[contenthash].css"
         }),
-        new htmlWebpackPlugin({
-            title: HOME_TABLE_CONFIG.title,
-            icon: common.templateDefault.icon,
-            copyright: common.templateDefault.copyright,
-            descriptions: HOME_TABLE_CONFIG.description,
-            keywords: HOME_TABLE_CONFIG.keywords,
-            filename: HOME_TABLE_CONFIG.filename,
-            template: HOME_TABLE_CONFIG.filepath,
-            ie8fix: common.templateDefault.ie8fix,
-            chunks: ['home_table'],
-            // hash: true,
-            // cache: true,
-            // showErrors: true,
-        }),
     ],
     devServer: {
         port: 80,
@@ -98,3 +66,21 @@ module.exports = {
         publicPath: 'http://localhost',
     },
 };
+
+//动态读取page_config中的html配置实现多页面加载
+(function() {
+    pagesConfig.pages.forEach(function(page) {
+        let htmlConfig = new htmlWebpackPlugin({
+            title: page.title,
+            icon: common.templateDefault.icon,
+            copyright: common.templateDefault.copyright,
+            descriptions: page.description,
+            keywords: page.keywords,
+            filename: page.filename,
+            template: page.filepath,
+            ie8fix: common.templateDefault.ie8fix,
+            chunks: ['home_table'],
+        });
+        module.exports.plugins.push(htmlConfig);
+    });
+})();
