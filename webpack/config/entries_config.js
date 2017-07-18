@@ -1,5 +1,6 @@
 const path = require('path');
 const common = require('./common_config');
+const glob = require('glob');
 
 class chunk {
     constructor(chunkName, chunkPath) {
@@ -8,12 +9,24 @@ class chunk {
     }
 }
 
-const ie8fix = new chunk("ie8fix", path.resolve(common.publicPath.scripts, "ie8fix.js"));
-const home_table = new chunk("home_table", path.resolve(common.privatePath.config, "entry_home_table.js"));
+//自动扫描，同步读取config文件中的entry文件
+let loadEntries = () => {
+    const entriesFilesPaths = [common.privatePath.config, common.publicPath.config];
+    let entries = {};
+    entriesFilesPaths.forEach(function(entriesFilePath) {
+        var files = glob.sync(path.resolve(entriesFilePath, "entry.*.js"), { nodir: true })
 
-module.exports = {
-    entries: [
-        ie8fix,
-        home_table
-    ]
+        let pathName = files.toString()
+        let fileName = pathName.substring(pathName.lastIndexOf("/") + 1);
+        let chunkName = fileName.substring(fileName.indexOf(".") + 1, fileName.lastIndexOf("."));
+        let newChunk = new chunk(chunkName, pathName);
+        entries[chunkName] = newChunk;
+        module.exports = {
+            "entries": entries
+        }
+    });
 }
+
+(function() {
+    loadEntries();
+})()

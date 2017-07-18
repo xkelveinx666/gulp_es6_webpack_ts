@@ -11,6 +11,7 @@ const entriesConfig = require('./webpack/config/entries_config');
 
 module.exports = {
     context: __dirname,
+    cache: true,
     output: {
         filename: "[name].bundle.js",
         path: common.location.dist,
@@ -65,7 +66,7 @@ let injectHTML = () => {
             filename: page.filename,
             template: page.filepath,
             ie8fix: common.templateDefault.ie8fix,
-            chunks: ['home_table'],
+            chunks: page.chunks,
         });
         module.exports.plugins.push(htmlConfig);
     });
@@ -73,10 +74,12 @@ let injectHTML = () => {
 
 //动态读取entries_config中的entry配置实现多页面加载
 let injectEntiries = () => {
+    const entries = entriesConfig.entries;
     let entryObject = {};
-    entriesConfig.entries.forEach(function(entry) {
-        let chunkName = entry.chunkName,
-            chunkPath = entry.chunkPath;
+    let entriesKeys = Object.keys(entries);
+    entriesKeys.forEach(function(key) {
+        let chunkName = entries[key].chunkName;
+        let chunkPath = entries[key].chunkPath;
         entryObject[chunkName] = chunkPath;
     });
     module.exports.entry = entryObject;
