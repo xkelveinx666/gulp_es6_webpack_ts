@@ -4,3 +4,7 @@
 尽量使用json加载配置文件，让gulpfile.js和webpack.config.js的配置高度复用。同时整理了工程化的思路
 
 在本项目中使用个人式的敏捷开发
+
+完成entry文件的自动扫描,在private的config和public的config中自动加载entry
+
+在gulp中原生调用webpack，可能会遇到异步的问题
