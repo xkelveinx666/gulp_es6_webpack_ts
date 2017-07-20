@@ -12,17 +12,15 @@ const HOME_TABLE_CONFIG = {
     "chunks": [entries.home_table.chunkName],
 }
 
-const HOME_SEND_CONFIG = {
-    "filepath": path.resolve(common.privatePath.pages, "test.art"),
-    "title": "测试页面2",
-    "icon": "webpack icon",
-    "description": "本页面用于华南理工大学广州学院计算机工程学院的短信成绩发送系统",
-    "keywords": "GCU send, send, GCU",
-    "filename": "main2.html",
-}
+// const HOME_SEND_CONFIG = {
+//     "filepath": path.resolve(common.privatePath.pages, "test.art"),
+//     "title": "测试页面2",
+//     "icon": "webpack icon",
+//     "description": "本页面用于华南理工大学广州学院计算机工程学院的短信成绩发送系统",
+//     "keywords": "GCU send, send, GCU",
+//     "filename": "main2.html",
+// }
 
 module.exports = {
-    pages: [HOME_TABLE_CONFIG,
-        HOME_SEND_CONFIG,
-    ]
+    pages: [HOME_TABLE_CONFIG, ]
 }

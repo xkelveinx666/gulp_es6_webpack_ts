@@ -2,12 +2,16 @@
 <html>
 
 <head>
-    <% include('../../public/pages/meta.art') %>
+    <%- include('../../public/pages/meta.art') -%>
 </head>
 
 <body>
-    <span><% if(student) { %> test <% } %></span>
-    <p>Hello Webpack World!</p>
+    <div class="container">
+
+        <p class="paragraph">Helo Webpack and gulp</p>
+        <!-- <span>test12321gdfgdfg4654654564563</span> -->
+        <input type="text" />
+    </div>
 </body>
 
 </html>

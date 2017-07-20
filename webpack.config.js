@@ -8,12 +8,22 @@ const common = require('./webpack/config/common_config');
 const pagesConfig = require('./webpack/config/page_config');
 const entriesConfig = require('./webpack/config/entries_config');
 
-const moduleContext = {
+const config = {
     context: __dirname,
     cache: true,
+    stats: {
+        color: true,
+        reasons: true,
+    },
     output: {
         filename: "[name].bundle.js",
         path: common.location.dist,
+    },
+    watchOptions: {
+        watch: true,
+        aggregateTimeout: 300,
+        pool: 1000,
+        ignored: /node_modules/,
     },
     module: {
 
@@ -24,10 +34,11 @@ const moduleContext = {
             },
         }, {
             test: /\.css$/,
-            use: extractTextPlugin.extract({
-                fallback: "style-loader",
-                use: "css-loader"
-            }),
+            use: ['style-loader', 'css-loader'],
+            // use: ['css-hot-loader'].concat(extractTextPlugin.extract({
+            //     fallback: "style-loader",
+            //     use: "css-loader"
+            // })),
         }, {
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
@@ -37,24 +48,31 @@ const moduleContext = {
                     presets: ['es2015']
                 }
             }
+        }, {
+            test: /\.(png|jpg)$/,
+            use: {
+                loader: 'url-loader',
+            }
         }],
     },
     plugins: [
-        new extractTextPlugin({
-            filename: "css/[name].[contenthash].css"
-        }),
+        // new extractTextPlugin({
+        //     filename: "css/[name].[contenthash].css"
+        // }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
-        port: 80,
+        port: 3000,
         host: '10.11.3.196',
+        hotOnly: true,
         contentBase: common.location.dist,
-        publicPath: 'http://localhost',
+        publicPath: 'http://10.11.3.196',
     },
 }
 
-module.exports = {
-    "config": moduleContext,
-};
+module.exports = config;
+
 
 //动态读取page_config中的html配置实现多页面加载
 let injectHTML = () => {
@@ -70,7 +88,7 @@ let injectHTML = () => {
             ie8fix: common.templateDefault.ie8fix,
             chunks: page.chunks,
         });
-        moduleContext.plugins.push(htmlConfig);
+        config.plugins.push(htmlConfig);
     });
 };
 
@@ -84,7 +102,7 @@ let injectEntiries = () => {
         let chunkPath = entries[key].chunkPath;
         entryObject[chunkName] = chunkPath;
     });
-    moduleContext.entry = entryObject;
+    config.entry = entryObject;
 }
 
 (function() {

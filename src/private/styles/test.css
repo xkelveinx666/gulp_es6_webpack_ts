@@ -1,3 +1,39 @@
-.test {
-    font-size: 5em;
+.container {
+    position: relative;
+    height: 34em;
+    color: red;
+    overflow: hidden;
+}
+
+.title {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    padding-right: 0.5em;
+    font-size: 1.6em;
+    color: #2FABFD;
+    text-align: right;
+}
+
+.paragraph {
+    padding: 0 1em;
+    line-height: 2em;
+    font-size: 1.65em;
+}
+
+.para {
+    width: 100%;
+}
+
+.triangle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 45%;
+    border: 1px solid red;
+}
+
+.pic {
+    float: right;
+    height: 1em;
+    border: 1px solid green;
 }
