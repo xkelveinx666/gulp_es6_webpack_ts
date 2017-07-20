@@ -9,7 +9,7 @@ const HOME_TABLE_CONFIG = {
     "description": "本页面用于华南理工大学广州学院计算机工程学院的短信成绩发送系统",
     "keywords": "GCU send, send, GCU",
     "filename": "main1.html",
-    "chunks": [entries.home_table.chunkName],
+    "chunks": [entries.home_table.chunkName, entries.send.chunkName],
 }
 
 // const HOME_SEND_CONFIG = {

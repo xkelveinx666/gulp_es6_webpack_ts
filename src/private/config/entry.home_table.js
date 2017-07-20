@@ -1,13 +1,9 @@
 import '../styles/test.css';
 import '../../public/styles/reset.css';
-import '../pages/test.art';
 (function() {
     let word = "hello";
-    console.log(word + "164565");
+    console.log(word + "world")
 })()
-
 if (module.hot) {
-
     module.hot.accept();
-
 }

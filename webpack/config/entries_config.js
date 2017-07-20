@@ -15,13 +15,13 @@ let loadEntries = () => {
     const entriesFilesPaths = [common.privatePath.config, common.publicPath.config];
     entriesFilesPaths.forEach(function(entriesFilePath) {
         var files = glob.sync(path.resolve(entriesFilePath, "entry.*.js"), { nodir: true })
-
-        let pathName = files.toString()
-        let fileName = pathName.substring(pathName.lastIndexOf("/") + 1);
-        let chunkName = fileName.substring(fileName.indexOf(".") + 1, fileName.lastIndexOf("."));
-        let newChunk = new chunk(chunkName, pathName);
-        entries[chunkName] = newChunk;
-
+        files.forEach(function(file) {
+            let pathName = file.toString();
+            let fileName = pathName.substring(pathName.lastIndexOf("/") + 1);
+            let chunkName = fileName.substring(fileName.indexOf(".") + 1, fileName.lastIndexOf("."));
+            let newChunk = new chunk(chunkName, pathName);
+            entries[chunkName] = newChunk;
+        })
     });
 }
 
