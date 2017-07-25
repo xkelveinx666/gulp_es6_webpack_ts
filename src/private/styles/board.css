@@ -1,0 +1,59 @@
+.board {
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 3em;
+    padding-bottom: 7em;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    width: 85%;
+    z-index: 3;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.content {
+    overflow: hidden;
+}
+
+.content>h2 {
+    float: right;
+    margin-top: 1em;
+    border-left: 2px solid rgba(0, 0, 0, 0.5);
+    padding-left: 2%;
+    min-height: 3em;
+    width: 1.3em;
+    font-size: 2.3rem;
+    font-family: "Noto Sans CJK SC";
+    color: #444;
+}
+
+.text {
+    float: left;
+    margin-top: 1em;
+    margin-left: 3%;
+    width: 75%;
+    line-height: 1.2em;
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: justify;
+    color: #555;
+}
+
+.text>div+div {
+    margin-top: 1.5em;
+}
+
+.text p {
+    font-size: 0.95rem;
+}
+
+.board>img {
+    position: absolute;
+    right: -0.5em;
+    bottom: 0.5em;
+    height: 6em;
+    width: 10em;
+    max-width: 100%;
+    font-size: 1rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}

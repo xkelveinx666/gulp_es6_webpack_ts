@@ -1,0 +1,17 @@
+.title {
+    margin: 1.3em auto;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    width: 70%;
+    height: 2em;
+    line-height: 2em;
+    white-space: nowrap;
+    font-size: 1.1rem;
+    font-family: "Noto Sans CJK SC";
+    color: #444;
+    text-align: center;
+}
+
+body {
+    background: url("../../public/images/union_background.jpg") repeat center;
+}

@@ -1,8 +1,9 @@
-import '../styles/test.css';
+import '../styles/board.css';
+import '../styles/home.css';
 import '../../public/styles/reset.css';
+import '../../public/styles/mobile.css';
 (function() {
-    let word = "hello";
-    console.log(word + "world")
+
 })()
 if (module.hot) {
     module.hot.accept();

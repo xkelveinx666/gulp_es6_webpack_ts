@@ -1,0 +1,18 @@
+<% if (data.boards) { %>
+    <% for(board of data.boards) { %>
+        <section class="board">
+            <div class="content">
+                <div class="text">
+                    {{#board.value}}
+
+                </div>
+                <h2>
+                    <%= board.title %>
+                </h2>
+            </div>
+            <% if(board.img) { %>
+                <img src="<%= board.img %>" />
+                <% } %>
+        </section>
+        <% }%>
+            <% } %>

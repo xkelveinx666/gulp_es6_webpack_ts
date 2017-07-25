@@ -8,3 +8,5 @@
 完成entry文件的自动扫描,在private的config和public的config中自动加载entry
 
 在gulp中原生调用webpack，可能会遇到异步的问题
+
+gulp 中无法使用nodejs方式在多入口情况下进行HMR，会发生无法找到对应更新问题，多入口还有可导致整个页面全局刷新，为了实现HMR即只用了webpack-dev-server命令行

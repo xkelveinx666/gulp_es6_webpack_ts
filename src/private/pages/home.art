@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <% include ('../../public/pages/meta.art') %>
+</head>
+
+<body>
+    <% if(htmlWebpackPlugin.options.data) { %>
+        <% var data = htmlWebpackPlugin.options.data %>
+            <h1 class="title">
+                <%= data.title %>
+            </h1>
+            <% include ('./board.art', {data}) %>
+                <% } %>
+
+</body>
+
+</html>
