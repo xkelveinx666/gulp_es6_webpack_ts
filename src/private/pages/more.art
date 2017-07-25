@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <% include ('../../public/pages/meta.art') %>
+</head>
+
+<body>
+    <section class="wrapper">
+        <header class="icon">
+            <h1>Zero-One</h1>
+        </header>
+        <nav>
+            <p>想要了解关于缴费、贷款、绿色通道、来校指引、班级信息等更多信息，欢迎下载计算机工程学院迎新助手APP(Zero-One)，我们将为你带来更多指引，还可在线提问哦！</p>
+        </nav>
+        <section class="download">
+            <div class="button">
+                <a href="#" class="android">Android下载</a>
+            </div>
+            <div class="button">
+                <a href="#" class="ios">iPhone下载</a>
+            </div>
+        </section>
+        <footer>
+            <div class="phone-first"></div>
+            <div class="phone-second"></div>
+        </footer>
+    </section>
+</body>
+
+</html>

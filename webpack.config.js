@@ -59,12 +59,6 @@ const config = {
         new webpack.HotModuleReplacementPlugin(),
         new reloadPlugin(),
     ],
-    // devServer: {
-    //     // hot: true,
-    //     publicPath: '/',
-    //     historyApiFallback: true,
-    //     stats: "errors-only"
-    // },
     devServer: {
         port: 80,
         host: '0.0.0.0',
@@ -100,33 +94,29 @@ module.exports = config;
 
 //动态读取page_config中的html配置实现多页面加载
 let injectHTML = () => {
-    homeData.forEach(function(data) {
-        pagesConfig.pages.forEach(function(page) {
-            let htmlConfig = new htmlWebpackPlugin({
-                hash: false,
-                minify: {
-                    removeEmptyElements: true,
-                    collapseInlineTagWhitespace: true,
-                    collapseWhitespace: true,
-                    removeAttributeQuotes: true,
-                    html5: true,
-                    minifyCSS: true,
-                    removeComments: true,
-                    removeEmptyAttributes: true,
-                },
-                title: page.title,
-                icon: common.templateDefault.icon,
-                copyright: common.templateDefault.copyright,
-                descriptions: page.description,
-                keywords: page.keywords,
-                filename: (page.filename + data.title),
-                template: page.filepath,
-                ie8fix: common.templateDefault.ie8fix,
-                chunks: page.chunks,
-                data: data,
-            });
-            config.plugins.push(htmlConfig);
+    pagesConfig.pages.forEach(function(page) {
+        let htmlConfig = new htmlWebpackPlugin({
+            hash: false,
+            minify: {
+                collapseInlineTagWhitespace: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true,
+                html5: true,
+                minifyCSS: true,
+                removeComments: true,
+                removeEmptyAttributes: true,
+            },
+            title: page.title,
+            icon: common.templateDefault.icon,
+            copyright: common.templateDefault.copyright,
+            descriptions: page.description,
+            keywords: page.keywords,
+            filename: page.filename,
+            template: page.filepath,
+            ie8fix: common.templateDefault.ie8fix,
+            chunks: page.chunks,
         });
+        config.plugins.push(htmlConfig);
     });
 };
 

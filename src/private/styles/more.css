@@ -1,0 +1,108 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: url('../../public/images/more_bg.png') no-repeat center;
+    background-size: 100% 100%;
+}
+
+header {
+    height: 8em;
+    background: url('../../public/images/big_logo.png') no-repeat center;
+    background-size: 4.5em;
+    font-size: 1rem;
+}
+
+header>h1 {
+    padding-top: 4.5em;
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+nav>p {
+    margin: 1.5em auto;
+    width: 80%;
+    line-height: 1.5em;
+    text-align: justify;
+    color: #fff;
+}
+
+.download {
+    margin: 0 auto;
+    width: 20em;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+.button {
+    position: relative;
+    float: left;
+    width: 8.5em;
+    white-space: nowrap;
+    background: url('../../public/images/download_button.png') no-repeat center;
+    border: 2px solid #fff;
+    font-size: 1.1rem;
+    z-index: 30;
+}
+
+.button+.button {
+    float: right;
+}
+
+.button>a {
+    display: inline-block;
+    height: 2.7em;
+    width: 90%;
+    padding: 0 5%;
+    line-height: 2.9em;
+    text-indent: 2.2em;
+    text-decoration: none;
+    color: #fff;
+    background-size: 1.4em;
+}
+
+.android {
+    background: url('../../public/images/android.png') no-repeat 0.5em;
+}
+
+.ios {
+    background: url('../../public/images/ios.png') no-repeat 0.5em;
+}
+
+footer {
+    position: fixed;
+    bottom: -1em;
+    height: 16em;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.phone-first {
+    left: 1.8em;
+    bottom: 0;
+    background: url('../../public/images/first_iphone_pic.png') no-repeat bottom;
+    z-index: 15;
+}
+
+.phone-second {
+    right: 1.2em;
+    bottom: -2.5em;
+    background: url('../../public/images/second_iphone_pic.png') no-repeat bottom;
+    z-index: 10;
+}
+
+.phone-first,
+.phone-second {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    font-size: 1rem;
+    background-size: auto 100%;
+}
