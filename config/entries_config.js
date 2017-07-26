@@ -1,6 +1,6 @@
-const path = require('path');
-const common = require('./common_config');
-const glob = require('glob');
+const glob = global.glob || require('glob');
+const common = global.common || require('./common_config')
+const path = global.path || require('path');
 
 class chunk {
     constructor(chunkName, chunkPath) {
@@ -27,8 +27,6 @@ let loadEntries = () => {
 
 (function() {
     loadEntries();
-})()
+})();
 
-module.exports = {
-    "entries": entries
-}
+module.exports = entries;

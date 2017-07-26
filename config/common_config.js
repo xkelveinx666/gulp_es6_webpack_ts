@@ -1,4 +1,4 @@
-const path = require('path');
+const path = global.path || require('path');
 
 const pageName = {
     "main": "main",
@@ -12,8 +12,11 @@ const fileType = {
 }
 
 const location = {
-    "src": path.resolve(__dirname, "../../", "src"),
-    "dist": path.resolve(__dirname, "../../", "dist"),
+    "src": path.resolve(__dirname, "../", "src"),
+    "dist": path.resolve(__dirname, "../", "dist"),
+    "private": path.resolve(__dirname, "../src", 'private'),
+    "public": path.resolve(__dirname, "../src", 'public'),
+    "defaultHTML": path.resolve(__dirname, "../config", 'default.art'),
 }
 const publicPath = {
     "pages": path.resolve(location.src, "public", "pages"),

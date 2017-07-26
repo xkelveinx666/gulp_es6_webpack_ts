@@ -3,26 +3,23 @@ var gulp = require('gulp'), //本地安装gulp所用到的地方
     gulpLoadPlugins = require('gulp-load-plugins'),
     plugins = gulpLoadPlugins(),
     webpack = require('webpack'),
-    lodash = require('lodash'),
-    common = require('./webpack/config/common_config.js'),
+    // common = require('./webpack/config/common_config.js'),
     webpackDevServer = require('webpack-dev-server'),
-    bs = require("browser-sync").create(),
-    config = require("./webpack.config.js").config;
+    bs = require("browser-sync").create();
+
+global.path = require('path'),
+    global.common = require('./config/common_config'),
+    global.entries = require('./config/entries_config'),
+    global.pages = require('./config/page_config'),
+    global.webpack = require('webpack');
+
 gulp.task('plugins', function() {
     console.log(plugins);
     console.log(require('./webpack.config').config);
     // console.log(lodash.merge(require('./webpack.config.js')()));
 });
 
-gulp.task('dev', function() {
-    webpack(require('./webpack.config').config, function(err, stats) {
-        if (err) {
-            throw new plugins.util.PluginError("webpack", err);
-        }
-        plugins.util.log("[webpack]", stats.toString());
-
-    })
-})
+gulp.task('dev', function() {});
 
 gulp.task('watch', function() {
     var compiler = webpack(config)

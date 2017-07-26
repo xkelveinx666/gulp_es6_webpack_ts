@@ -1,6 +1,6 @@
-const path = require('path');
-const common = require('./common_config');
-const entries = require('./entries_config').entries;
+const path = global.path || require('path'),
+    common = global.common || require('./common_config'),
+    entries = global.entries || require('./entries_config');
 
 const HOME_TABLE_CONFIG = {
     "filepath": path.resolve(common.privatePath.pages, "more.art"),
@@ -11,6 +11,5 @@ const HOME_TABLE_CONFIG = {
     "filename": "more.html",
     "chunks": [entries.more.chunkName],
 }
-module.exports = {
-    pages: [HOME_TABLE_CONFIG, ]
-}
+
+module.exports = [HOME_TABLE_CONFIG, ];
