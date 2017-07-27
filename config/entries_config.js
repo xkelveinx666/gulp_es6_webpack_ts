@@ -1,5 +1,5 @@
 const glob = global.glob || require('glob');
-const common = global.common || require('./common_config')
+const common = global.common || require('./common_config');
 const path = global.path || require('path');
 
 //自动扫描，同步读取config文件中的entry文件

@@ -3,7 +3,7 @@
     global.path = require('path'),
         global.common = require('./config/common_config'),
         global.entries = require('./config/entries_config'),
-        global.pages = require('./config/page_config'),
+        global.pages = require('./config/pages_config'),
         global.webpack = require('webpack');
 })();
 const gulp = require('gulp'), //本地安装gulp所用到的地方
@@ -12,25 +12,26 @@ const gulp = require('gulp'), //本地安装gulp所用到的地方
     webpackConfig = require('./webpack/webpack.config'),
     webpack = require('webpack'),
     browserSync = require("browser-sync").create(),
+    devServerConfig = require('./webpack/devServer'),
     webpackDevMiddleware = require("webpack-dev-middleware"),
     webpackHotMiddleware = require("webpack-hot-middleware");
 
 gulp.task('plugins', function() {
     console.log(plugins);
     console.log(require('./webpack.config').config);
-    // console.log(lodash.merge(require('./webpack.config.js')()));
 });
 
 gulp.task('dev', function() {
     browserSync.init({
         server: {
             baseDir: "./dist",
+            middleware: [
+                webpackDevMiddleware(webpack(webpackConfig), devServerConfig),
+                webpackHotMiddleware(webpack(webpackConfig)),
+            ],
 
         },
-        middleware: [
-            webpackDevMiddleware(webpack(webpackConfig)),
-            webpackHotMiddleware(webpack(webpackConfig)),
-        ],
+
         port: 80,
         ghostMode: false,
         open: false,

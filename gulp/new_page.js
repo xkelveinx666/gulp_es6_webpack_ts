@@ -5,7 +5,7 @@ const path = global.path || require('path');
 // 网页名正则，以小写字母，数字下划线组成,3位到12位不能过长也不能过短
 const pageNameRegex = /^[a-z0-9_]{2}/;
 const onlyNumberRegex = /^[0-9]/;
-const PageConfig = require('../config/page_config');
+const HTMLPageConfig = require('../config/HTMLPageConfig');
 
 const fileExist = (path) => {
     try {
@@ -42,7 +42,7 @@ const touchFile = (name) => {
             if (err) {
                 console.log(err);
             }
-            var pageConfig = new PageConfig({
+            var pageConfig = new HTMLPageConfig({
                 "filepath": `path.resolve(common.location.private, '${name}', 'pages', '${name}' + '.art')`,
                 "filename": name + ".html",
                 "chunks": `path.resolve(common.location.private, '${name}', 'entry.' + '${name}' + '.js')`,

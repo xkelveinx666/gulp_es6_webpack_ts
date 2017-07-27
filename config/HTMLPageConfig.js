@@ -1,4 +1,4 @@
-class PageConfig {
+class HTMLPageConfig {
     constructor({ filepath, title = "天高科技工作室", icon = "天高科技工作室logo", description = "华南理工大学广州学院计算机工程学院天高科技工作室", keywords = "tentcoo, GCU", filename, chunks, pagename } = { title: "天高科技工作室", icon: "天高科技工作室logo", description: "华南理工大学广州学院计算机工程学院天高科技工作室", keywords: "tentcoo, GCU" }) {
         this.filepath = filepath;
         this.title = title;
@@ -28,4 +28,4 @@ module.exports = ${this.pagename};
     }
 }
 
-module.exports = PageConfig;
+module.exports = HTMLPageConfig;

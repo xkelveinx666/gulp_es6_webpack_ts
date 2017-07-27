@@ -3,6 +3,11 @@ const common = global.common || require('../config/common_config');
 const devServer = {
     port: 80,
     host: '0.0.0.0',
+    hot: true,
+    watchOptions: {
+        ignored: /node_modules/,
+        poll: 1000,
+    },
     historyApiFallback: true,
     stats: {
         colors: true,

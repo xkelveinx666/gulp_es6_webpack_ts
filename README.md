@@ -10,3 +10,9 @@
 在gulp中原生调用webpack，可能会遇到异步的问题
 
 gulp 中无法使用nodejs方式在多入口情况下进行HMR，会发生无法找到对应更新问题，多入口还有可导致整个页面全局刷新，为了实现HMR即只用了webpack-dev-server命令行
+
+偶然间看到了在browser sync 中的middleware调用webpack dev middleware 的 issues https://github.com/BrowserSync/browser-sync/issues/246,试了下，还真的成功调用起来了
+
+将结构分成以页面为文件夹，独立文件不在放在一起了，降低耦合和误操作的可能
+
+同时重构page的读取方式，也使用自动读取
