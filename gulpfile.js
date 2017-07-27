@@ -34,10 +34,6 @@ gulp.task('dev', function() {
         port: 80,
         ghostMode: false,
         open: false,
-        files: [
-            './src/private/home_page/styles/*.css',
-            './src/private/home_page/pages/*.art'
-        ]
     });
 
 });

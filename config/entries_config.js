@@ -19,7 +19,6 @@ let loadEntries = () => {
 
 (function() {
     loadEntries();
-    console.log(entries);
 })();
 
 module.exports = entries;

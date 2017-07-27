@@ -1,4 +1,4 @@
-const extractTextPlugin = require("extract-text-webpack-plugin");
+// const extractTextPlugin = require("extract-text-webpack-plugin");
 const rules = [{
     test: /\.art$/,
     use: {
@@ -6,11 +6,11 @@ const rules = [{
     },
 }, {
     test: /\.css$/,
-    // use: ['style-loader', 'css-loader'],
-    use: ['css-hot-loader'].concat(extractTextPlugin.extract({
-        fallback: "style-loader",
-        use: "css-loader"
-    })),
+    use: ['style-loader', 'css-loader'],
+    // use: ['css-hot-loader'].concat(extractTextPlugin.extract({
+    //     fallback: "style-loader",
+    //     use: "css-loader"
+    // })),
 }, {
     test: /\.js$/,
     exclude: /(node_modules|bower_components)/,
@@ -27,4 +27,4 @@ const rules = [{
     }
 }]
 
-module.exports = rules;
+module.exports = { "rules": rules };
