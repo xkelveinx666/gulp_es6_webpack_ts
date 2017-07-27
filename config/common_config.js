@@ -18,6 +18,7 @@ const location = {
     "public": path.resolve(__dirname, "../src", 'public'),
     "defaultHTML": path.resolve(__dirname, "../config", 'default.art'),
 }
+
 const publicPath = {
     "pages": path.resolve(location.src, "public", "pages"),
     "scripts": path.resolve(location.src, "public", "scripts"),
