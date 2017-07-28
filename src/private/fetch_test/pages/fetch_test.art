@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <% include ('../../../public/pages/meta.art') %>
+</head>
+
+<body>
+    <input type="button" value="fetch56+ddddd" />
+    <p>awdad132l456464654613</p>
+</body>
+
+</html>

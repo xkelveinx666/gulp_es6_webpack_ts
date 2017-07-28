@@ -44,7 +44,7 @@ const touchFile = (name) => {
             }
             var pageConfig = new HTMLPageConfig({
                 "filepath": `path.resolve(common.location.private, '${name}', 'pages', '${name}' + '.art')`,
-                "filename": name + ".html",
+                "filename": `'${name}.html'`,
                 "chunks": `path.resolve(common.location.private, '${name}', 'entry.' + '${name}' + '.js')`,
                 "pagename": name,
             });

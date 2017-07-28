@@ -41,11 +41,12 @@ gulp.task('dev', ['clean'], () => {
         ghostMode: false,
         open: false,
         files: [
+            // './dist/*.html',
             './src/private/**/**/*.art',
             './src/public/**/**/*.art',
-        ]
+        ],
+        reloadDelay: 1000,
     });
-
 });
 
 gulp.task('build', ['clean'], () => {
