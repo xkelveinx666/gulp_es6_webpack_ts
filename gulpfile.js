@@ -4,14 +4,14 @@
         global.common = require('./config/common_config'),
         global.entries = require('./config/entries_config'),
         global.pages = require('./config/pages_config'),
-        global.webpack = require('webpack');
+        global.webpack = require('webpack'),
+        global._ = require('lodash');
 })();
 const gulp = require('gulp'), //本地安装gulp所用到的地方
     gulpLoadPlugins = require('gulp-load-plugins'),
     plugins = gulpLoadPlugins(),
-    webpackConfig = require('./webpack/webpack.config'),
+    originalConfig = require('./webpack/webpack.config'),
     webpack = require('webpack'),
-    bundler = webpack(webpackConfig),
     browserSync = require("browser-sync").create(),
     devServerConfig = require('./webpack/devServer'),
     hotMiddleware = require('./webpack/hotMiddleware'),
@@ -24,6 +24,9 @@ gulp.task('plugins', function() {
 });
 
 gulp.task('dev', function() {
+    const devConfig = require('./webpack/webpack.dev');
+    const webpackConfig = _.merge({}, devConfig, originalConfig);
+    const bundler = webpack(webpackConfig);
     browserSync.init({
         server: {
             baseDir: "./dist",
