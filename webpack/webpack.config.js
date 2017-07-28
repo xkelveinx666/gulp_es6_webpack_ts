@@ -8,8 +8,6 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const pagesConfig = global.pages || require('../config/pages_config');
 
 const config = {
-    context: __dirname,
-    cache: true,
     entry: entries,
     output: {
         filename: "[name].bundle.js",

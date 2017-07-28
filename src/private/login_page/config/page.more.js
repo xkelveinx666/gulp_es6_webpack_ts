@@ -9,7 +9,6 @@ const HOME_TABLE_CONFIG = {
     "description": "本页面用于华南理工大学广州学院计算机工程学院的迎新助手zero-one",
     "keywords": "GCU assistant, zero-one, GCU",
     "filename": "more.html",
-    "chunks": ["more"],
 }
 
 module.exports = HOME_TABLE_CONFIG;

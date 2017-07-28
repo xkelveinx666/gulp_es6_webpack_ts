@@ -3,7 +3,7 @@ const common = global.common || require('./common_config');
 const path = global.path || require('path');
 
 //自动扫描，同步读取config文件中的entry文件
-let entries = {};
+let entries = { 'hot': ['webpack-hot-middleware/client?', ] };
 let loadEntries = () => {
     const entriesFilesPaths = [common.location.private, common.publicPath.config];
     entriesFilesPaths.forEach(function(entriesFilePath) {
@@ -19,6 +19,9 @@ let loadEntries = () => {
 
 (function() {
     loadEntries();
+    entries = {
+        'more': ['webpack-hot-middleware/client', '/Users/xkelvinx666/Documents/workplace/Gulp/es6_wepack_ts/src/private/login_page/config/entry.more.js', ],
+    }
 })();
 
 module.exports = entries;

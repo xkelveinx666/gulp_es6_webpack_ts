@@ -11,8 +11,10 @@ const gulp = require('gulp'), //本地安装gulp所用到的地方
     plugins = gulpLoadPlugins(),
     webpackConfig = require('./webpack/webpack.config'),
     webpack = require('webpack'),
+    bundler = webpack(webpackConfig),
     browserSync = require("browser-sync").create(),
     devServerConfig = require('./webpack/devServer'),
+    hotMiddleware = require('./webpack/hotMiddleware'),
     webpackDevMiddleware = require("webpack-dev-middleware"),
     webpackHotMiddleware = require("webpack-hot-middleware");
 
@@ -26,15 +28,18 @@ gulp.task('dev', function() {
         server: {
             baseDir: "./dist",
             middleware: [
-                webpackDevMiddleware(webpack(webpackConfig), devServerConfig),
-                webpackHotMiddleware(webpack(webpackConfig)),
+                webpackDevMiddleware(bundler, devServerConfig),
+                webpackHotMiddleware(bundler, hotMiddleware),
             ],
 
         },
-
         port: 80,
         ghostMode: false,
         open: false,
+        files: [
+            './src/private/**/**/*.art',
+            './src/public/**/**/*.art',
+        ]
     });
 
 });

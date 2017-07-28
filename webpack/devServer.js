@@ -1,9 +1,6 @@
 const common = global.common || require('../config/common_config');
 
 const devServer = {
-    port: 80,
-    host: '0.0.0.0',
-    hot: true,
     watchOptions: {
         ignored: /node_modules/,
         poll: 1000,
@@ -19,7 +16,7 @@ const devServer = {
     },
     disableHostCheck: true,
     contentBase: common.location.dist,
-    publicPath: 'http://0.0.0.0',
+    publicPath: 'http://0.0.0.0/',
 }
 
 module.exports = devServer;
