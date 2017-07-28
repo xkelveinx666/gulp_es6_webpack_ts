@@ -4,8 +4,7 @@
         global.common = require('./config/common_config'),
         global.entries = require('./config/entries_config'),
         global.pages = require('./config/pages_config'),
-        global.webpack = require('webpack'),
-        global._ = require('lodash');
+        global.webpack = require('webpack');
 })();
 const gulp = require('gulp'), //本地安装gulp所用到的地方
     gulpLoadPlugins = require('gulp-load-plugins'),
@@ -17,7 +16,8 @@ const gulp = require('gulp'), //本地安装gulp所用到的地方
     hotMiddleware = require('./webpack/hotMiddleware'),
     webpackDevMiddleware = require("webpack-dev-middleware"),
     webpackHotMiddleware = require("webpack-hot-middleware"),
-    del = require('del');
+    del = require('del'),
+    assign = require('./config/assign_object');
 
 gulp.task('plugins', () => {
     console.log(plugins);
@@ -26,7 +26,7 @@ gulp.task('plugins', () => {
 
 gulp.task('dev', ['clean'], () => {
     const devConfig = require('./webpack/webpack.dev');
-    const webpackConfig = _.merge({}, devConfig, originalConfig);
+    const webpackConfig = assign(devConfig, originalConfig);
     const bundler = webpack(webpackConfig);
     browserSync.init({
         server: {
@@ -50,8 +50,7 @@ gulp.task('dev', ['clean'], () => {
 
 gulp.task('build', ['clean'], () => {
     const buildConfig = require('./webpack/webpack.build');
-    const webpackConfig = _.merge({}, buildConfig, originalConfig);
-    console.log(webpackConfig.module.rules);
+    const webpackConfig = assign(buildConfig, originalConfig);
     const bundler = webpack(webpackConfig);
     bundler.run((err, stats) => {
         if (err) {
