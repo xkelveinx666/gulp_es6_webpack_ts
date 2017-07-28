@@ -23,7 +23,6 @@ let loadPages = () => {
 
 (function() {
     loadPages();
-    console.log(pages);
 })();
 
 module.exports = pages;

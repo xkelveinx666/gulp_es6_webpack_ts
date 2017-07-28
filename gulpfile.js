@@ -16,14 +16,15 @@ const gulp = require('gulp'), //本地安装gulp所用到的地方
     devServerConfig = require('./webpack/devServer'),
     hotMiddleware = require('./webpack/hotMiddleware'),
     webpackDevMiddleware = require("webpack-dev-middleware"),
-    webpackHotMiddleware = require("webpack-hot-middleware");
+    webpackHotMiddleware = require("webpack-hot-middleware"),
+    del = require('del');
 
-gulp.task('plugins', function() {
+gulp.task('plugins', () => {
     console.log(plugins);
     console.log(require('./webpack.config').config);
 });
 
-gulp.task('dev', function() {
+gulp.task('dev', ['clean'], () => {
     const devConfig = require('./webpack/webpack.dev');
     const webpackConfig = _.merge({}, devConfig, originalConfig);
     const bundler = webpack(webpackConfig);
@@ -47,99 +48,18 @@ gulp.task('dev', function() {
 
 });
 
-gulp.task('watch', function() {
-    var compiler = webpack(config)
-
-    // compiler.run((rr, stats) => {
-    //     console.log(stats.toString({
-    //         colors: true,
-    //     }));
-    // });
-
-    // const watching = compiler.watch({}, (err, stats) => {
-    //     // console.log(stats);
-    // });
-
-    var server = new webpackDevServer(compiler, {
-        publicPath: config.output.publicPath,
-        // hot: true,
-        historyApiFallback: true,
-        stats: {
-            colors: true,
-            hash: false,
-            timings: true,
-            chunks: false,
-            chunkModules: false,
-            modules: false
+gulp.task('build', ['clean'], () => {
+    const buildConfig = require('./webpack/webpack.build');
+    const webpackConfig = _.merge({}, buildConfig, originalConfig);
+    console.log(webpackConfig.module.rules);
+    const bundler = webpack(webpackConfig);
+    bundler.run((err, stats) => {
+        if (err) {
+            console.log(err);
         }
-    });
-
-    // let server = new webpackDevServer(compiler, {
-    //     stats: {
-    //         colors: true,
-    //         reasons: true,
-    //     },
-    //     hotOnly: true,
-    //     // hotOnly: true,
-    //     // watchContentBase: true,
-    //     // watchOptions: {
-    //     //     aggregateTimeout: 300,
-    //     //     pool: 1000,
-    //     //     ignored: /node_modules/,
-    //     // },
-    //     disableHostCheck: true,
-    //     // contentBase: common.location.dist,
-    //     // publicPath: 'http://0.0.0.0',
-    // }, (err, stats) => {
-    //     console.log(stats.toString({
-    //         color: true,
-    //     }));
-    // })
-    server.listen(80, "0.0.0.0", () => {
-        console.log("server running on http://localhost");
     });
 })
 
-gulp.task("webpack-dev-server", function() {
-    var compiler = webpack(require('./webpack.config.js').config)
-
-    var server = new webpackDevServer(compiler, {
-        stats: {
-            color: true,
-        },
-        hotOnly: true,
-        watch: true,
-        watchContentBase: true,
-        watchOptions: {
-            aggregateTimeout: 300,
-            pool: 1000,
-            ignored: /node_modules/,
-        },
-        disableHostCheck: true,
-        contentBase: common.location.dist,
-    })
-    server.listen(80, "0.0.0.0", () => {
-        console.log("server running on http://localhost");
-    });
-    // let compiler = webpack(require('./webpack.config').config, (err, stats) => {
-    //     if (err) {
-    //         throw new plugins.util.PluginError("webpack-dev-server", err);
-    //     }
-    //     // console.log(stats);
-    // });
-
-    // // const watching = compiler.watch({}, (err, stats) => {
-    // //     // console.log(stats);
-    // // });
-
-    // new webpackDevServer(compiler, {
-    //     watch: true
-    // }).listen(80, "10.11.3.196", (err) => {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         plugins.util.log("[webpack-dev-server]", "http://localhost/webpack-dev-server/main1.html");
-    //     }
-    // });
-
+gulp.task('clean', () => {
+    del.sync(common.location.dist);
 })

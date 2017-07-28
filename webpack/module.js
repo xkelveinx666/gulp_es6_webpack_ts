@@ -5,13 +5,6 @@ const rules = [{
         loader: "art-template-loader",
     },
 }, {
-    test: /\.css$/,
-    use: ['style-loader', 'css-loader'],
-    // use: ['css-hot-loader'].concat(extractTextPlugin.extract({
-    //     fallback: "style-loader",
-    //     use: "css-loader"
-    // })),
-}, {
     test: /\.js$/,
     exclude: /(node_modules|bower_components)/,
     use: {
