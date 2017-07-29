@@ -14,7 +14,8 @@ const loadingConfig = () => {
         global.common = require('./config/common_config'),
         global.entries = require('./config/entries_config'),
         global.pages = require('./config/pages_config'),
-        global.webpack = require('webpack');
+        global.webpack = require('webpack'),
+        global.browserSync = browserSync;
     return {
         devServerConfig: require('./webpack/devServer'),
         hotMiddleware: require('./webpack/hotMiddleware'),
@@ -46,15 +47,11 @@ gulp.task('dev', ['clean'], () => {
         port: 80,
         ghostMode: false,
         open: false,
-        files: [
-            // './src/private/**/**/*.art',
-            // './src/public/**/**/*.art',
-        ],
+        // files: [
+        //     './src/private/**/**/*.art',
+        //     './src/public/**/**/*.art',
+        // ],
     });
-    console.log(bundler);
-    // bundler.plugin('done', () => {
-    //     browserSync.reload();
-    // })
 });
 
 gulp.task('reload', () => {

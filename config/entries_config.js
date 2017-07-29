@@ -1,7 +1,8 @@
 const glob = global.glob || require('glob');
 const common = global.common || require('./common_config');
 const path = global.path || require('path');
-const hot = 'webpack-hot-middleware/client';
+const hotDev = 'webpack/hot/dev-server';
+const hotMiddle = 'webpack-hot-middleware/client?reload=true';
 
 //自动扫描，同步读取config文件中的entry文件
 let entries = {};
@@ -14,7 +15,7 @@ let loadEntries = () => {
             let fileName = pathName.substring(pathName.lastIndexOf("/") + 1);
             let chunkName = fileName.substring(fileName.indexOf(".") + 1, fileName.lastIndexOf("."));
             if (process.env.NODE_ENV === "developing") {
-                entries[chunkName] = [hot, pathName];
+                entries[chunkName] = [hotDev, hotMiddle, pathName];
             } else {
                 entries[chunkName] = pathName;
             }
@@ -24,9 +25,6 @@ let loadEntries = () => {
 
 (function() {
     loadEntries();
-    entries = {
-        'more': ['webpack-hot-middleware/client', '/Users/xkelvinx666/Documents/workplace/Gulp/es6_wepack_ts/src/private/login_page/config/entry.more.js', ],
-    }
 })();
 
 module.exports = entries;

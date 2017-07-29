@@ -7,7 +7,7 @@ const path = global.path || require('path'),
         "description": "华南理工大学广州学院计算机工程学院天高科技工作室",
         "keywords": "tentcoo, GCU",
         "filename": 'fetch_upload.html',
-        "chunks": ['more'],
+        "chunks": ['fetch_upload'],
     }
 
 module.exports = fetch_upload;

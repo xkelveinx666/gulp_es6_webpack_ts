@@ -34,6 +34,7 @@ let injectHTML = () => {
             template: page.filepath,
             ie8fix: common.templateDefault.ie8fix,
             chunks: page.chunks,
+            cache: true,
         });
         config.plugins.push(htmlConfig);
     });
