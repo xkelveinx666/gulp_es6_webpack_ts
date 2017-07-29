@@ -7,8 +7,9 @@ const browserSync = global.browserSync;
 function HtmlWebpackReloadPlugin() {}
 
 HtmlWebpackReloadPlugin.prototype.apply = function(compiler) {
-    // Hook into the html-webpack-plugin processing
+    // Hook into the html-webpack-plugin emit
     compiler.plugin('compilation', function(compilation) {
+        //无法停止在hmr过程中的编译
         // compilation.plugin('html-webpack-plugin-before-html-processing', function(htmlPluginData, callback) {
         //     const originalHTML = global[htmlPluginData.outputName],
         //         newHTML = htmlPluginData.html;
