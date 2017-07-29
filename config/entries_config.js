@@ -1,9 +1,10 @@
 const glob = global.glob || require('glob');
 const common = global.common || require('./common_config');
 const path = global.path || require('path');
+const hot = 'webpack-hot-middleware/client';
 
 //自动扫描，同步读取config文件中的entry文件
-let entries = { 'hot': ['webpack-hot-middleware/client?', ] };
+let entries = {};
 let loadEntries = () => {
     const entriesFilesPaths = [common.location.private, common.publicPath.config];
     entriesFilesPaths.forEach(function(entriesFilePath) {
@@ -12,7 +13,11 @@ let loadEntries = () => {
             let pathName = file.toString();
             let fileName = pathName.substring(pathName.lastIndexOf("/") + 1);
             let chunkName = fileName.substring(fileName.indexOf(".") + 1, fileName.lastIndexOf("."));
-            entries[chunkName] = pathName;
+            if (process.env.NODE_ENV === "developing") {
+                entries[chunkName] = [hot, pathName];
+            } else {
+                entries[chunkName] = pathName;
+            }
         })
     });
 }

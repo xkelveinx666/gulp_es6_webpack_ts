@@ -3,6 +3,6 @@ import "../styles/more.css";
     if (module.hot) {
         module.hot.accept();
     }
-    console.log("133dawhdakwjdhkaw");
+    console.log("133w");
     console.log(process.env.NODE_ENV);
 })();

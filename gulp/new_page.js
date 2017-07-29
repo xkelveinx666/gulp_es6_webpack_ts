@@ -44,8 +44,8 @@ const touchFile = (name) => {
             }
             var pageConfig = new HTMLPageConfig({
                 "filepath": `path.resolve(common.location.private, '${name}', 'pages', '${name}' + '.art')`,
+                "chunks": `['${name}']`,
                 "filename": `'${name}.html'`,
-                "chunks": `path.resolve(common.location.private, '${name}', 'entry.' + '${name}' + '.js')`,
                 "pagename": name,
             });
             console.log(pageConfig);
@@ -93,5 +93,6 @@ const createNewPage = () => {
 }
 
 (function() {
+    console.log(process.env.NODE_ENV);
     createNewPage();
 })();
