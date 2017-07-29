@@ -9,9 +9,18 @@ function HtmlWebpackReloadPlugin() {}
 HtmlWebpackReloadPlugin.prototype.apply = function(compiler) {
     // Hook into the html-webpack-plugin processing
     compiler.plugin('compilation', function(compilation) {
+        // compilation.plugin('html-webpack-plugin-before-html-processing', function(htmlPluginData, callback) {
+        //     const originalHTML = global[htmlPluginData.outputName],
+        //         newHTML = htmlPluginData.html;
+        //     if (originalHTML !== newHTML) {
+        //         global[htmlPluginData.outputName.substring(0, htmlPluginData.outputName.lastIndexOf('.'))] = newHTML;
+        //         callback(null);
+        //     }
+        // });
         compilation.plugin('html-webpack-plugin-after-emit', function(htmlPluginData, callback) {
             const originalHTML = global[htmlPluginData.outputName];
-            const newHTML = htmlPluginData.html.source()
+            const newHTML = htmlPluginData.html.source();
+            console.log(newHTML);
             if (originalHTML !== newHTML) {
                 browserSync.reload();
                 global[htmlPluginData.outputName] = newHTML;

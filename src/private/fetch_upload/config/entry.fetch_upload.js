@@ -3,5 +3,5 @@ if (module.hot) {
 }
 
 (function() {
-    console.log("1wjjAWJKDAKLWDHAKWDHKJASDJFSDLKJFLKSDFk");
+    console.log("1KJSkjakldjalwkdjklawdjlkalwdkj");
 })();
