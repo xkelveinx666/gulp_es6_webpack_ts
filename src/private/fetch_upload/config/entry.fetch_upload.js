@@ -2,6 +2,9 @@ if (module.hot) {
     module.hot.accept();
 }
 
+import ajax from '../../../public/scripts/ajax';
+
 (function() {
-    console.log("1KJSkjakldjalwkdjklawdjlkalwdkj");
+    const url = "/index.html";
+    console.log(ajax(url));
 })();

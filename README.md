@@ -31,7 +31,7 @@ gulp 中无法使用nodejs方式在多入口情况下进行HMR，会发生无法
 ### 目前已经实现了css, jsHMR热加载，art，html自动编译并full reload
 
 主要用于webpack配置文件的合并，es6的Object.assign()对同名键直接覆盖，lodash.merge对同名对象也是直接覆盖，数组顺序要求严格于。于是自己手写了方法存在/config/assign_object.js中
-
+### 配置完了webpack，第一个demo为fetch api 实现的ajax接口， 包括文件上传
 
 本demo插件版本
 -    "browser-sync": "^2.18.12",

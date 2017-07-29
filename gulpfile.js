@@ -47,10 +47,6 @@ gulp.task('dev', ['clean'], () => {
         port: 80,
         ghostMode: false,
         open: false,
-        // files: [
-        //     './src/private/**/**/*.art',
-        //     './src/public/**/**/*.art',
-        // ],
     });
 });
 

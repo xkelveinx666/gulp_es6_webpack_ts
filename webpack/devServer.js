@@ -14,6 +14,9 @@ const devServer = {
         chunkModules: false,
         modules: false,
     },
+    proxy: {
+        "/mock": "http://localhost:8081",
+    },
     disableHostCheck: true,
     contentBase: common.location.dist,
     publicPath: 'http://0.0.0.0/',
