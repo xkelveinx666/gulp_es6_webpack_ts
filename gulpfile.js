@@ -17,9 +17,18 @@ const loadingConfig = () => {
         global.pages = require('./config/pages_config'),
         global.webpack = require('webpack'),
         global.browserSync = browserSync;
-    return {
-        devServerConfig: require('./webpack/devServer'),
-        hotMiddleware: require('./webpack/hotMiddleware'),
+    if (process.env.NODE_ENV === "developing") {
+        return {
+            devConfig: require('./webpack/webpack.dev'),
+            originalConfig: require('./webpack/webpack.config'),
+            devServerConfig: require('./webpack/devServer'),
+            hotMiddleware: require('./webpack/hotMiddleware'),
+        }
+    } else if (process.env.NODE_ENV === "building") {
+        return {
+            buildConfig: require('./webpack/webpack.build'),
+            originalConfig: require('./webpack/webpack.config'),
+        }
     };
 }
 
@@ -31,9 +40,7 @@ gulp.task('plugins', () => {
 gulp.task('dev', ['clean'], () => {
     process.env.NODE_ENV = 'developing';
     const serverConfig = loadingConfig();
-    const devConfig = require('./webpack/webpack.dev');
-    const originalConfig = require('./webpack/webpack.config');
-    const webpackConfig = assign(devConfig, originalConfig);
+    const webpackConfig = assign(serverConfig.devConfig, serverConfig.originalConfig);
     const bundler = webpack(webpackConfig);
     const middlewareProxy = proxy('/new_seat/', {
         "target": 'http://localhost:8080',
@@ -61,8 +68,9 @@ gulp.task('reload', () => {
 });
 
 gulp.task('build', ['clean'], () => {
-    const buildConfig = require('./webpack/webpack.build');
-    const webpackConfig = assign(buildConfig, originalConfig);
+    process.env.NODE_ENV = 'building';
+    const produceConfig = loadingConfig();
+    const webpackConfig = assign(produceConfig.buildConfig, produceConfig.originalConfig);
     const bundler = webpack(webpackConfig);
     bundler.run((err, stats) => {
         if (err) {

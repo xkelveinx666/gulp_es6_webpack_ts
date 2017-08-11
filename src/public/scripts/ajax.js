@@ -1,28 +1,30 @@
-<<<<<<< HEAD
-const ajax = ({ url, header, callback }) => {
+const ajax = ({ url, method, parameter, acceptFunction }) => {
     if (!url) {
         console.log("url is null");
         return;
     }
-    console.log(url);
-    fetch(url, { "method": "POST", })
-=======
-const ajax = (url, header, callback) => {
-    fetch(url)
->>>>>>> 21821569c37e4fb5992ad76c9dabc1a018deb0a7
+    console.log(parameter);
+    const requestBody = {
+        "method": method,
+        "header": new Headers(),
+    };
+    const request = new Request(url, requestBody);
+    fetch(request)
         .then((response) => {
-            if (fetch.ok) {
+            if (response.ok) {
                 console.log(response);
+                return response.text();
             } else {
                 console.log('fail fetch ' + url);
             }
+        }).then((text) => {
+            if (acceptFunction) {
+                acceptFunction(text);
+            }
+            console.log(text);
         }).catch((error) => {
             console.log(error);
         });
-<<<<<<< HEAD
 };
-=======
-}
->>>>>>> 21821569c37e4fb5992ad76c9dabc1a018deb0a7
 
 export default ajax;
