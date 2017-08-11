@@ -21,7 +21,6 @@ HtmlWebpackReloadPlugin.prototype.apply = function(compiler) {
         compilation.plugin('html-webpack-plugin-after-emit', function(htmlPluginData, callback) {
             const originalHTML = global[htmlPluginData.outputName];
             const newHTML = htmlPluginData.html.source();
-            console.log(newHTML);
             if (originalHTML !== newHTML) {
                 browserSync.reload();
                 global[htmlPluginData.outputName] = newHTML;

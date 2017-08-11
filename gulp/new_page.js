@@ -71,7 +71,7 @@ const createNewPage = () => {
     process.stdin.on('readable', () => {
         const input = process.stdin.read();
         if (input && input !== null && input.length > 2) {
-            const name = input.substring(0, input.length - 1);
+            const name = input.replace(/\r|\n/ig, "");
             if (name.match(pageNameRegex)) {
                 if (name.match(onlyNumberRegex)) {
                     console.log("不能为纯数字");
@@ -93,6 +93,5 @@ const createNewPage = () => {
 }
 
 (function() {
-    console.log(process.env.NODE_ENV);
     createNewPage();
 })();

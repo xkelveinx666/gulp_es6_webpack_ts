@@ -6,6 +6,7 @@ const gulp = require('gulp'), //本地安装gulp所用到的地方
     browserSync = require("browser-sync").create(),
     webpackDevMiddleware = require("webpack-dev-middleware"),
     webpackHotMiddleware = require("webpack-hot-middleware"),
+    proxy = require('http-proxy-middleware'),
     del = require('del'),
     assign = require('./config/assign_object');
 
@@ -34,23 +35,24 @@ gulp.task('dev', ['clean'], () => {
     const originalConfig = require('./webpack/webpack.config');
     const webpackConfig = assign(devConfig, originalConfig);
     const bundler = webpack(webpackConfig);
+    const middlewareProxy = proxy('/new_seat/', {
+        "target": 'http://localhost:8080',
+        "secure": false,
+        "changeOrigin": true,
+    });
     browserSync.init({
         server: {
             baseDir: "./dist",
             middleware: [
                 webpackDevMiddleware(bundler, serverConfig.devServerConfig),
                 webpackHotMiddleware(bundler, serverConfig.hotMiddleware),
+                middlewareProxy,
             ],
-
         },
         online: false,
         port: 80,
         ghostMode: false,
         open: false,
-        // files: [
-        //     './src/private/**/**/*.art',
-        //     './src/public/**/**/*.art',
-        // ],
     });
 });
 
